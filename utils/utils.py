@@ -206,3 +206,41 @@ def build_model(num_char_tokens : int = NUM_CHAR_TOKENS,
         )
 
     return model
+
+def predict(model: tf.keras.Model,
+            abstract_line_numbers_one_hot: tf.Tensor,
+            abstract_total_lines_one_hot: tf.Tensor,
+            abstract_lines: list,
+            abstract_chars: list,
+            labels: CLASSES):
+    """Generates model predictions
+
+    Args:
+        model (tf.keras.Model): model object with weights instantiated
+        abstract_line_numbers_one_hot (tf.Tensor): tensor output from positional encoding preprocessing
+        abstract_total_lines_one_hot (tf.Tensor): tensor output from positional encoding preprocessing
+        abstract_lines (list): list of parsed sentences from sentence preprocessing
+        abstract_chars (list): list of character sentences from character preprocessing
+        labels (CLASSES): class labels
+
+    Returns:
+        list: list of labels for each line.
+    """
+    
+    pred_probabilities = model.predict(x=(abstract_line_numbers_one_hot,
+                                  abstract_total_lines_one_hot,
+                                  tf.constant(abstract_lines),
+                                  tf.constant(abstract_chars)))
+    predictions = tf.argmax(pred_probabilities, axis=1)
+    return [labels[i] for i in predictions]
+
+def return_text(labelled_sentences: list,
+                abstract_lines: list):
+    """Returns a skimmable summary
+
+    Args:
+        labelled_sentences (list): List of model predicted labels for each sentence
+        abstract_lines (list): List of parsed sentences from abstract
+    """
+    for i, line in enumerate(abstract_lines):
+        print(f"{labelled_sentences[i]}: {line}")

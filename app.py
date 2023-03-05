@@ -11,10 +11,7 @@ from utils.exceptions import *
 
 app = FastAPI()
 
-origins = [
-    "http://localhost",
-    "http://localhost:8080",
-]
+origins = []
 
 app.add_middleware(
     CORSMiddleware,
@@ -26,6 +23,7 @@ app.add_middleware(
 
 class Abstract (BaseModel):
     Abstract: str
+    Checkpoint_dir: str
     
 @app.get('/')
 async def root():

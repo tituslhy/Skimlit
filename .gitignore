@@ -2,4 +2,5 @@
 /.ipynb_checkpoints
 /training/
 /config/__pycache__
+/utils/__pycache__
 /Notebooks/Scratch.ipynb
