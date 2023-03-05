@@ -3,6 +3,12 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 
+import tensorflow as tf
+
+from config.config import *
+from utils.utils import *
+from utils.exceptions import *
+
 app = FastAPI()
 
 origins = [
