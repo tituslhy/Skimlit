@@ -20,3 +20,7 @@ app.add_middleware(
 
 class Abstract (BaseModel):
     Abstract: str
+    
+@app.get('/')
+async def root():
+    return {'message': 'Welcome to the Skimlit API!'}
