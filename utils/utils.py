@@ -208,12 +208,12 @@ def build_model(num_char_tokens : int = NUM_CHAR_TOKENS,
 
     return model
 
-def Predict(model: tf.keras.Model,
-            abstract_line_numbers_one_hot: tf.Tensor,
-            abstract_total_lines_one_hot: tf.Tensor,
-            abstract_lines: list,
-            abstract_chars: list,
-            labels : list =  CLASSES):
+def run_inference(model: tf.keras.Model,
+                  abstract_line_numbers_one_hot: tf.Tensor,
+                  abstract_total_lines_one_hot: tf.Tensor,
+                  abstract_lines: list,
+                  abstract_chars: list,
+                  labels : list =  CLASSES):
     """Generates model predictions
 
     Args:
