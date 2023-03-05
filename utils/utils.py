@@ -125,7 +125,7 @@ def build_model(num_char_tokens : int = NUM_CHAR_TOKENS,
     token_outputs = layers.Dense(128, activation='relu')(token_embeddings)
     
     token_model = tf.keras.Model(inputs=token_inputs,
-                                outputs=token_outputs)
+                                 outputs=token_outputs)
 
     # Char model
     char_vectorizer = TextVectorization(
@@ -169,8 +169,9 @@ def build_model(num_char_tokens : int = NUM_CHAR_TOKENS,
     )
     y = layers.Dense(32, activation='relu')(total_line_inputs)
     total_line_model = tf.keras.Model(inputs = total_line_inputs,
-                                        outputs = y)
+                                      outputs = y)
     
+    # Combining embeddings
     combined_embeddings = layers.Concatenate(
         name="token_char_hybrid_embedding"
         )([token_model.output, char_model.output])
@@ -196,8 +197,8 @@ def build_model(num_char_tokens : int = NUM_CHAR_TOKENS,
                                     total_line_model.input,
                                     token_model.input,
                                     char_model.input],
-                            outputs = output_layer,
-                            name = 'model_tribrid_model')
+                           outputs = output_layer,
+                           name = 'model_tribrid_model')
     
     model.compile(
         loss=tf.keras.losses.CategoricalCrossentropy(label_smoothing=0.2),
@@ -207,12 +208,12 @@ def build_model(num_char_tokens : int = NUM_CHAR_TOKENS,
 
     return model
 
-def predict(model: tf.keras.Model,
+def Predict(model: tf.keras.Model,
             abstract_line_numbers_one_hot: tf.Tensor,
             abstract_total_lines_one_hot: tf.Tensor,
             abstract_lines: list,
             abstract_chars: list,
-            labels: CLASSES):
+            labels : list =  CLASSES):
     """Generates model predictions
 
     Args:
@@ -228,9 +229,9 @@ def predict(model: tf.keras.Model,
     """
     
     pred_probabilities = model.predict(x=(abstract_line_numbers_one_hot,
-                                  abstract_total_lines_one_hot,
-                                  tf.constant(abstract_lines),
-                                  tf.constant(abstract_chars)))
+                                          abstract_total_lines_one_hot,
+                                          tf.constant(abstract_lines),
+                                          tf.constant(abstract_chars)))
     predictions = tf.argmax(pred_probabilities, axis=1)
     return [labels[i] for i in predictions]
 
