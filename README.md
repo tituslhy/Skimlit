@@ -1,4 +1,4 @@
-# <div align="center"> SkimLit </div>
+# <div align="center"> Welcome to the SkimLit App! </div>
 <div align="center">
 
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white)
@@ -8,7 +8,7 @@
 ![Generic badge](https://img.shields.io/badge/STATUS-INPROGRESS-<COLOR>.svg)
 
 </div>
-Welcome to the SkimLit application
+
 <p align="center">
   <img src="Images/skimlit.png">
 </p> <br>
