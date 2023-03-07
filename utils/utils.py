@@ -1,3 +1,4 @@
+from collections import defaultdict
 import numpy as np
 import pandas as pd
 
@@ -8,8 +9,10 @@ from tensorflow.keras.layers import TextVectorization
 import tensorflow_hub as hub
 
 from spacy.lang.en import English
+import docx
 
 import os
+import tempfile
 import sys
 sys.path.append(os.path.join(os.path.dirname(__file__), '..','config'))
 from config import *
@@ -228,20 +231,34 @@ def run_inference(model: tf.keras.Model,
         list: list of labels for each line.
     """
     
-    pred_probabilities = model.predict(x=(abstract_line_numbers_one_hot,
+    try:
+        pred_probabilities = model.predict(x=(abstract_line_numbers_one_hot,
                                           abstract_total_lines_one_hot,
                                           tf.constant(abstract_lines),
                                           tf.constant(abstract_chars)))
+    except:
+        return tensorflow_prediction_exception()
     predictions = tf.argmax(pred_probabilities, axis=1)
     return [labels[i] for i in predictions]
 
-def return_text(labelled_sentences: list,
+def return_text(sentence_labels: list,
                 abstract_lines: list):
     """Returns a skimmable summary
 
     Args:
-        labelled_sentences (list): List of model predicted labels for each sentence
+        sentence_labels (list): List of model predicted labels for each sentence
         abstract_lines (list): List of parsed sentences from abstract
     """
-    for i, line in enumerate(abstract_lines):
-        print(f"{labelled_sentences[i]}: {line}")
+    compile = defaultdict(list)
+    for idx, sentence in enumerate(abstract_lines):
+        compile[sentence_labels[idx]].append(sentence)
+    for label in compile:
+        compile[label] = ' '.join(compile[label])
+    text = ''
+    for summary in compile:
+        if len(text)==0:
+            text += '__'+ summary + '__ : ' + compile[summary] + '  '
+        else:
+            text += '\n__'+ summary + '__ : ' + compile[summary] + '  '
+    return text
+    

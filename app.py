@@ -43,10 +43,25 @@ async def get_skimmable_abstract(abstract: Abstract,):
     abstract_line_numbers_one_hot, abstract_total_lines_one_hot = preprocess_position(abstract_lines)
     abstract_chars = preprocess_chars(abstract_lines)
     
-    model = build_model()
-    model.load_weights(abstract.checkpoint_dir)
-    labelled_sentences = run_inference(model,
-                                       abstract_line_numbers_one_hot,
-                                       abstract_total_lines_one_hot,
-                                       abstract_lines,
-                                       abstract_chars)
+    #Instantiate model and weights
+    try:
+        model = build_model()
+    except:
+        return build_model_exception()
+    try:
+        model.load_weights(abstract.checkpoint_dir)
+    except:
+        return load_weights_exception()
+    
+    #Run inference
+    sentence_labels = run_inference(model,
+                                    abstract_line_numbers_one_hot,
+                                    abstract_total_lines_one_hot,
+                                    abstract_lines,
+                                    abstract_chars)
+    
+    #Format text
+    text = return_text(sentence_labels,
+                       abstract_lines)
+    
+    return {'text': text}
