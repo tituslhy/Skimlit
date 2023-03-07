@@ -88,7 +88,9 @@ All experimented models are trained over 3 epochs. The experimented models and t
         <td>This finding shows that sentence position is very important in its classification.</td>
     </tr>
 
-Unfortunately the model size is too large and will not be committed on github. Do reach out to me if you would like to have it! The model architecture is: <br>
+
+<br><br>
+Unfortunately the model size is too large and will not be committed on github. Do reach out to me if you would like to have it! The model architecture is: <br><br>
 <p align="center">
   <img src="Images/model.png">
 </p> <br>
