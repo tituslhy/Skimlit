@@ -37,7 +37,7 @@ Users are encouraged to upload their unskimmable summaries to the text folder an
 A skimmable summary is then returned as an output to the user
 
 ## The model
-Unfortunately the model size is too large and will not be committed on github. Do reach out to me if you would like to have it! The model architecture is: <br>
+Unfortunately the model size is too large and will not be committed on github. Do reach out to me if you would like to have it! The model architecture (specifics are available in utils/utils.py under the 'build_model' function) is: <br>
 <p align="center">
   <img src="Images/model.png">
 </p> <br>
