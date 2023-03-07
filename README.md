@@ -1,9 +1,10 @@
-# SkimLit
-<div align = 'center>
+# <div align="center"> SkimLit </div>
+<div align="center">
 ![TensorFlow](https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white)
 ![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+[![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org)
+![Generic badge](https://img.shields.io/badge/STATUS-INPROGRESS-<COLOR>.svg)
 </div>
-
 Welcome to the SkimLit application
 <p align="center">
   <img src="Images/skimlit.png">
