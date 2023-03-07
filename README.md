@@ -21,7 +21,7 @@ To run the frontend (written with Streamlit), open a new terminal instance and t
 This launches the application's user interface. Feel free to interact with it! <br>
 
 <p align="center">
-  <img src="Images/skimlit.png">
+  <img src="Images/app.png">
 </p> <br>
 
 Users are encouraged to upload their unskimmable summaries to the text folder and click 'skim it'. This loads the model which will then be used to run an inference on the submitted text.<br>
