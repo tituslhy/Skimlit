@@ -13,18 +13,18 @@
   <img src="Images/skimlit.png">
 </p> <br>
 
-The aim of skimlit is to make lengthy summaries skimmable to the eyes. Though abstracts are already summaries of their main documents, they can still be quite hard to read. Thankfully, AI can help! The experiments closely follow the paper [PubMed 200k RCT: a Dataset for Sequenctial Sentence Classification in Medical Abstracts](https://arxiv.org/abs/1710.06071), which is also the source of data for this project.
+The aim of skimlit is to make lengthy summaries skimmable to the eyes. Though abstracts are already summaries of their main documents, they can still be quite hard to read. Thankfully, AI can help! The experiments closely follow the models attempted by the paper [PubMed 200k RCT: a Dataset for Sequenctial Sentence Classification in Medical Abstracts](https://arxiv.org/abs/1710.06071), using the same data source.
 
 ## The SkimLit app
-To instantiate the environment, type the following commands in your terminal:
+1. Instantiate the environment, type the following commands in your terminal:
 ```git clone https://github.com/tituslhy/Skimlit```
 ```pip -r requirements.txt```
 
-To run the backend (written with FastAPI), type the following commands in youer terminal:
+2. Run the backend (written with FastAPI), type the following commands in your terminal:
 ```pip install "uvicorn[standard]"```
 ```uvicorn app:app --port 8000 --reload```
 
-To run the frontend (written with Streamlit), open a new terminal instance and type the following command:
+3. Run the frontend (written with Streamlit), open a new terminal instance and type the following command:
 ```streamlit run skimlit.py```
 
 This launches the application's user interface. Feel free to interact with it! <br>
@@ -46,19 +46,19 @@ Users are encouraged to upload their unskimmable summaries to the text folder an
 A skimmable summary is then returned as an output to the user
 
 ## The model
-Unfortunately the model size is too large and will not be committed on github. Do reach out to me if you would like to have it! The model architecture (specifics are available in utils/utils.py under the 'build_model' function) is: <br>
+Unfortunately the model size is too large and will not be uploaded on GitHub - but do reach out to me if you would like to have the exact weights. The model architecture (specifics are available in utils/utils.py under the 'build_model' function) is: <br>
 <p align="center">
   <img src="Images/model.png">
 </p> <br>
 
-All experimented models are trained over 3 epochs. A summary of experimented models and their validation accuracy are as follows:
+All experimented models are trained over 3 epochs on only 10% of the training data to speed up experiment timing. The best model of the experiment is then trained on all training data over 5 epochs. A summary of experimented models and their validation accuracy are as follows:
 <br>
 <table>
   <thead align="center">
     <tr border: none;>
       <td><b>Experiment</b></td>
       <td><b>Model</b></td>
-      <td><b>Validation accuracy (on 15% of test data)</b></td>
+      <td><b>Validation accuracy (on 10% of test data)</b></td>
       <td><b>Findings</b></td>
     </tr>
   </thead>
@@ -98,6 +98,6 @@ All experimented models are trained over 3 epochs. A summary of experimented mod
         <td><b>Tribrid model with USE word embeddings, character embeddings and sentence positioning embeddings</b></a></td>
         <td> We derive the sentence's position as an embedding for each sentence in each abstract, and the total abstract length as another embedding input to the USE word-char hybrid model before. This model now takes in 4 tensor inputs (words, characters, sentence position in abstract and total lines in abstract)
         </td>
-        <td>83.0% (final testing accuracy after 5 epochs: 84.8%)</td>
+        <td>83.0% (final testing accuracy after 5 epochs of training is 84.8%)</td>
         <td>This finding shows that sentence position is very important in its classification.</td>
     </tr>
