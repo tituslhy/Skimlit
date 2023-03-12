@@ -17,8 +17,8 @@ The aim of skimlit is to make lengthy summaries skimmable to the eyes. Though ab
 
 ## The SkimLit app
 1. Instantiate the environment, type the following commands in your terminal:
-```git clone https://github.com/tituslhy/Skimlit```
-```pip -r requirements.txt```
+* ```git clone https://github.com/tituslhy/Skimlit```
+* ```pip -r requirements.txt```
 
 2. Run the backend (written with FastAPI), type the following commands in your terminal:
 * ```pip install "uvicorn[standard]"```
