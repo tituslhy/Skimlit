@@ -21,8 +21,8 @@ The aim of skimlit is to make lengthy summaries skimmable to the eyes. Though ab
 ```pip -r requirements.txt```
 
 2. Run the backend (written with FastAPI), type the following commands in your terminal:
-```pip install "uvicorn[standard]"```
-```uvicorn app:app --port 8000 --reload```
+* ```pip install "uvicorn[standard]"```
+* ```uvicorn app:app --port 8000 --reload```
 
 3. Run the frontend (written with Streamlit), open a new terminal instance and type the following command:
 ```streamlit run skimlit.py```
