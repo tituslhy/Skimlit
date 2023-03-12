@@ -51,7 +51,7 @@ Unfortunately the model size is too large and will not be uploaded on GitHub - b
   <img src="Images/model.png">
 </p> <br>
 
-All experimented models are trained over 3 epochs on only 10% of the training data to speed up experiment timing. The best model of the experiment is then trained on all training data over 5 epochs. A summary of experimented models and their validation accuracy are as follows:
+All experimented models are trained over 3 epochs on only 10% of the training data to speed up experiment timing. The best model of the experiments tabulated below is then trained on all training data over 5 epochs. A summary of all experimented models and their validation accuracy are as follows:
 <br>
 <table>
   <thead align="center">
